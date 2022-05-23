@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "935328264997",
+    "project_id": "authentication-86881",
+    "storage_bucket": "authentication-86881.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:935328264997:android:6fa5c22cb207510ed760cc",
+        "android_client_info": {
+          "package_name": "com.farestrand.firestore_authentication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "935328264997-60bpuch2vjfs68msbfqukek63fkd6qsq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBiKbYieC5TJJGrY1A2O5Ife-TV1A7KDAo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "935328264997-60bpuch2vjfs68msbfqukek63fkd6qsq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
