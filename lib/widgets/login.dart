@@ -26,6 +26,8 @@ class _LoginState extends State<Login> {
     return Container(
       color: Theme.of(context).colorScheme.primary,
 
+
+
       // decoration: new BoxDecoration(
       //   // color: Theme.of(context).colorScheme.secondary,
       //   // color: Colors.lightBlue,
@@ -59,9 +61,9 @@ class _LoginState extends State<Login> {
                 style: ElevatedButton.styleFrom(
                   maximumSize: const Size.fromHeight(50),
                 ),
-                icon: const Icon(Icons.lock_open, size: 32),
+                icon: const Icon(Icons.lock_open, size: 32, color: Colors.black,),
                 label: const Text("Log in",
-                  style: TextStyle(fontSize: 24),
+                  style: TextStyle(fontSize: 24, color: Colors.black),
                 ),
                 onPressed: (){
                   login(emailController.text.trim(), passwordController.text.trim());

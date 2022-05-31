@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 // Define a custom Form widget.
 class RegistrationForm extends StatefulWidget {
@@ -28,6 +29,7 @@ class RegistrationFormState extends State<RegistrationForm> {
   final phoneNumberController = TextEditingController();
   final birthDayController = TextEditingController();
   DateTime birthDate = DateTime.now();
+  var phoneFormatter = new MaskTextInputFormatter(mask: '###.###.####');
 
   @override
   Widget build(BuildContext context) {
@@ -38,6 +40,7 @@ class RegistrationFormState extends State<RegistrationForm> {
         key: _formKey,
         child: Column(
           children: <Widget>[
+            SizedBox(height: 40),
             TextFormField(
               controller: firstNameController,
               decoration: InputDecoration(labelText: "First Name"),
@@ -49,7 +52,7 @@ class RegistrationFormState extends State<RegistrationForm> {
               }
             ),
             TextFormField(
-                controller: firstNameController,
+                controller: lastNameController,
                 decoration: InputDecoration(labelText: "Last Name"),
                 validator: (value) {
                   if (value == null || value.isEmpty  ) {
@@ -73,10 +76,18 @@ class RegistrationFormState extends State<RegistrationForm> {
                 controller: phoneNumberController,
                 keyboardType: TextInputType.phone,
                 decoration: InputDecoration(labelText: "Email Address"),
+                inputFormatters: [phoneFormatter],
                 validator: (value) {
+                  print("len");
+                  print(value!.length);
                   if (value == null || value.isEmpty  ) {
                     return 'Please enter phone number';
                   }
+
+                  if ( value.length < 12 ){
+                    return "Enter full phone number including area code";
+                  }
+
                   return null;
                 }
             ),
@@ -95,11 +106,31 @@ class RegistrationFormState extends State<RegistrationForm> {
 
                   bool numFound =  RegExp(r".*[0-9].*").hasMatch(value.toString());
                   bool letterFound =  RegExp(r".*[A-Za-z].*").hasMatch(value.toString());
-                  print(numFound);
-                  print(letterFound);
-                  if ( numFound == false && letterFound == false  ) {
-                    return "Password must contain at least one number and one letter";
+                  bool spaceFound = RegExp(r".*[ ].*").hasMatch(value.toString());
+                  bool specCharFound = RegExp(r".*[\!\~\`\@\#\$\%\^\&\*\(\-\_\+\=\:\;\,\<\.\>\/\?].*").hasMatch(value.toString());
+                  if ( numFound == false || letterFound == false || specCharFound == false ) {
+                    return "Password must contain at least one number, one letter, and one special character";
                   }
+                  if (spaceFound) {
+                    return "Password cannot have a space";
+                  }
+                  int v = value!.length;
+                  if ( v < 10 ){
+                    return "password should be at least 10 characters";
+                  }
+                  return null;
+                }
+            ),
+            TextFormField(
+                controller: passwordConfirmController,
+                keyboardType: TextInputType.text,
+                obscureText: true,
+                decoration: InputDecoration(labelText: "Password"),
+                validator: (value) {
+                  if (value != passwordController.text) {
+                    return "Passwords do not match";
+                  }
+
                   return null;
                 }
             ),

@@ -25,7 +25,8 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         // Define the default brightness and colors.
         // brightness: Brightness.dark,
-        primaryColor: Colors.lightBlue[800],
+        primaryColor: Colors.lightBlue,
+        backgroundColor: Colors.lightBlue,
 
         // Define the default font family.
         fontFamily: 'Georgia',
@@ -38,7 +39,7 @@ class MyApp extends StatelessWidget {
           bodyText2: TextStyle(fontSize: 14.0, fontFamily: 'Hind', color:  Colors.black),
         ),
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MyHomePage(title: 'Auth and Nav Demo'),
       // initialRoute: Login.id;
       routes: {
     Register_Screen.id: (context) => Register_Screen(),
