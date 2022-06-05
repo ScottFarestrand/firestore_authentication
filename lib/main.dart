@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'widgets/login.dart';
+import './widgets/verifyEmail.dart';
 import 'screens/register.dart';
 import 'screens/userScreen.dart';
 
@@ -16,6 +17,7 @@ Future main() async {
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
+
 
   // This widget is the root of your application.
   @override
@@ -64,6 +66,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    bool isVerified = false;
 
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.primary,
@@ -76,6 +79,13 @@ class _MyHomePageState extends State<MyHomePage> {
           builder: (context, snapshot){
             if (snapshot.hasData) {
               print("Yes");
+              final user = FirebaseAuth.instance.currentUser!;
+              isVerified =  user.emailVerified;
+              if (!isVerified) {
+                print("Verify");
+                return VerifyEmail();
+              }
+              print("Login");
               return Login();
             }else{
               print("Not");

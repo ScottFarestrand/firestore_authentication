@@ -169,8 +169,6 @@ class RegistrationFormState extends State<RegistrationForm> {
                           email: emailController.text.trim(),
                           password: passwordController.text.trim()).
                         then((value) {
-                          print("Send it");
-                          sendVerificationEmail();
                           ScaffoldMessenger.of(context).showSnackBar(
                           const SnackBar(content: Text("Created")),
                         );
